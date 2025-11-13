@@ -1,5 +1,0 @@
-Full Power Mode Plan "fba7f244-7756-44d4-96df-26ce0edbcd1e";
-Full Power Mode Hertz "240";
-
-Energy Saver Mode Plan "381b4222-f694-41f0-9685-ff5bb260df2e";
-Energy Saver Mode Hertz "100";
