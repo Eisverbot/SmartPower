@@ -118,29 +118,40 @@ int main() {
 
     // Display menu
     SetColor(15);
-    std::cout << "====================================================\n";
-    std::cout << "              Performance Mode Switcher     \n";
-    std::cout << "====================================================\n\n";
 
-    SetColor(14); std::cout << " [1] ";
-    SetColor(12); std::cout << "Activate Full Power Mode (" << config["Full Power Mode Hertz"] << " Hz, high power)\n";
+    std::cout << R"(
+     ______                         ______                        
+    / _____)                    _  (_____ \                       
+   ( (____  ____  _____  ____ _| |_ _____) )__  _ _ _ _____  ____ 
+    \____ \|    \(____ |/ ___|_   _)  ____/ _ \| | | | ___ |/ ___)
+    _____) ) | | / ___ | |     | |_| |   | |_| | | | | ____| |    
+   (______/|_|_|_\_____|_|      \__)_|    \___/ \___/|_____)_|    
+                                                                       
+)";
+    std::cout << "\n";
 
-    SetColor(14); std::cout << " [2] ";
-    SetColor(10); std::cout << "Activate Energy Saver Mode (" << config["Energy Saver Mode Hertz"] << " Hz, low power)\n\n";
+    SetColor(15); std::cout << " [1] ";
+    SetColor(12); std::cout << "> Activate Full Power Mode (" << config["Full Power Mode Hertz"] << " Hz, high power)\n";
 
-    SetColor(15); std::cout << "Choose mode (1 or 2): ";
+    SetColor(15); std::cout << " [2] ";
+    SetColor(3); std::cout << "> Activate Energy Saver Mode (" << config["Energy Saver Mode Hertz"] << " Hz, low power)\n\n";
+
+    SetColor(15); std::cout << " Choose mode (1 or 2): ";
     int choice;
     std::cin >> choice;
     system("cls");
 
     if (choice == 1) {
+        std::cout << "\n";
         // Activating Full Power Mode
-        SetColor(10); std::cout << "Activating ";
+        SetColor(10); std::cout << "  Activating ";
         SetColor(12); std::cout << "Full Power Mode";
         SetColor(10); std::cout << " ...\n";
 
+        std::cout << "\n";
+
         if (SetPowerPlan(config["Full Power Mode Plan"])) {
-            SetColor(12); std::cout << "Full Power Plan";
+            SetColor(12); std::cout << "  Full Power Plan";
             SetColor(10); std::cout << " successfully activated!\n";
             SetColor(15);
         }
@@ -151,7 +162,7 @@ int main() {
 
         int hz = std::stoi(config["Full Power Mode Hertz"]);
         if (SetRefreshRate(hz)) {
-            SetColor(10); std::cout << "Refresh rate set to " << hz << " Hz successfully.\n";
+            SetColor(10); std::cout << "  Refresh rate set to " << hz << " Hz successfully.\n";
             SetColor(15);
         }
         else {
@@ -161,13 +172,16 @@ int main() {
 
     }
     else if (choice == 2) {
+        std::cout << "\n";
         // Activating Energy Saver Mode
-        SetColor(10); std::cout << "Activating ";
-        SetColor(10); std::cout << "Energy Saver Mode";
+        SetColor(10); std::cout << "  Activating ";
+        SetColor(3); std::cout << "Energy Saver Mode";
         SetColor(10); std::cout << " ...\n";
 
+        std::cout << "\n";
+
         if (SetPowerPlan(config["Energy Saver Mode Plan"])) {
-            SetColor(10); std::cout << "Energy Saver Plan";
+            SetColor(3); std::cout << "  Energy Saver Plan";
             SetColor(10); std::cout << " successfully activated!\n";
             SetColor(15);
         }
@@ -178,7 +192,7 @@ int main() {
 
         int hz = std::stoi(config["Energy Saver Mode Hertz"]);
         if (SetRefreshRate(hz)) {
-            SetColor(10); std::cout << "Refresh rate set to " << hz << " Hz successfully.\n";
+            SetColor(10); std::cout << "  Refresh rate set to " << hz << " Hz successfully.\n";
             SetColor(15);
         }
         else {
@@ -193,7 +207,7 @@ int main() {
     }
 
     SetColor(15);
-    std::cout << "\nPress Enter to exit...";
+    std::cout << "\n  > Press Enter to exit...";
     std::cin.ignore();
     std::cin.get();
     return 0;
